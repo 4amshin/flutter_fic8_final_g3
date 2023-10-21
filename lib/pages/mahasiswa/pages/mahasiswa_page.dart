@@ -25,7 +25,7 @@ class _MahasiswaPageState extends State<MahasiswaPage> {
   final List<Widget> _pages = const [
     DashboardPage(),
     AbsensiPage(),
-    ProfilePage(),
+    ProfilePage(role: "Mahasiswa"),
   ];
 
   @override

@@ -45,6 +45,7 @@ class DashboardPage extends StatelessWidget {
                   ),
                   SizedBox(height: 20),
                   DpListTitle(),
+                  SizedBox(height: 10),
                   DpListMenu(),
                 ],
               ),
