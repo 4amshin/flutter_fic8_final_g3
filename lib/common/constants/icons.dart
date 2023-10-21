@@ -3,6 +3,8 @@ class IconName {
   static const String chart = 'assets/icons/chart.svg';
   static const String profile = 'assets/icons/profile.svg';
   static const String notification = 'assets/icons/notification.svg';
+  static const String notificationOutline =
+      'assets/icons/notification-outline.svg';
   static const String search = 'assets/icons/search.svg';
   static const String scan = 'assets/icons/scan.svg';
   static const String filter = 'assets/icons/filter.svg';
