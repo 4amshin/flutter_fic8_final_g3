@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fic8_final_g3/common/constants/colors.dart';
+import 'package:flutter_fic8_final_g3/common/constants/custom_navigation.dart';
 import 'package:flutter_fic8_final_g3/common/constants/icons.dart';
+import 'package:flutter_fic8_final_g3/pages/auth/pages/auth_page.dart';
 import 'package:flutter_fic8_final_g3/pages/profile/widgets/pp_card.dart';
 import 'package:flutter_fic8_final_g3/pages/profile/widgets/pp_item.dart';
 import 'package:flutter_fic8_final_g3/pages/profile/widgets/pp_logout_button.dart';
@@ -84,7 +86,7 @@ class ProfilePage extends StatelessWidget {
             // ),
             const SizedBox(height: 20),
             PpLogoutButton(
-              onTap: () {},
+              onTap: () => Navigate.pushReplacement(const AuthPage()),
             ),
           ],
         ),

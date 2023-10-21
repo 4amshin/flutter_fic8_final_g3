@@ -1,25 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_fic8_final_g3/common/constants/colors.dart';
+import 'package:flutter_fic8_final_g3/common/constants/custom_navigation.dart';
 import 'package:flutter_fic8_final_g3/common/constants/images.dart';
 import 'package:flutter_fic8_final_g3/common/widgets/svg_image.dart';
+import 'package:flutter_fic8_final_g3/pages/auth/pages/auth_page.dart';
 
-class SplashPage extends StatelessWidget {
+class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
 
   @override
+  State<SplashPage> createState() => _SplashPageState();
+}
+
+class _SplashPageState extends State<SplashPage> {
+  @override
+  // void initState() {
+  //   super.initState();
+  //   Future.delayed(
+  //     const Duration(seconds: 3),
+  //     () => Navigate.pushReplacement(const AuthPage()),
+  //   );
+  // }
+
+  @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Column(
+        child: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SvgImage(
               iconUrl: Images.splash,
-              height: 200,
+              height: 180,
             ),
-            const SizedBox(height: 50),
+            SizedBox(height: 15),
             Text(
-              "SIAKAD",
+              "SIAKAD UNCP",
               style: TextStyle(
                 fontSize: 25.0,
                 color: ColorName.text,
@@ -38,7 +55,16 @@ class SplashPage extends StatelessWidget {
               ),
             ),
           ],
-        ),
+        )
+            .animate()
+            .fade()
+            .slideY(
+              begin: 1,
+              duration: 1.5.seconds,
+              curve: Curves.easeOutCubic,
+            )
+            .then()
+            .shimmer(duration: 1.5.seconds),
       ),
     );
   }
