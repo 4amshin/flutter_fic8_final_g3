@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../common/constants/colors.dart';
 
-class SemesterDialogWidget extends StatelessWidget {
-  const SemesterDialogWidget({
+class SpScheduleDialogWidget extends StatelessWidget {
+  const SpScheduleDialogWidget({
     super.key,
   });
 
@@ -30,7 +30,7 @@ class SemesterDialogWidget extends StatelessWidget {
               ),
               child: const Center(
                 child: Text(
-                  'Semester 1',
+                  'Senin',
                   style: TextStyle(
                     color: Colors.white,
                     fontFamily: 'Poppins',
@@ -50,7 +50,7 @@ class SemesterDialogWidget extends StatelessWidget {
                   border: Border.all(color: ColorName.primary)),
               child: const Center(
                 child: Text(
-                  'Semester 2',
+                  'Selasa',
                   style: TextStyle(
                     color: ColorName.primary,
                     fontFamily: 'Poppins',
@@ -70,7 +70,7 @@ class SemesterDialogWidget extends StatelessWidget {
                   border: Border.all(color: ColorName.primary)),
               child: const Center(
                 child: Text(
-                  'Semester 3',
+                  'Rabu',
                   style: TextStyle(
                     color: ColorName.primary,
                     fontFamily: 'Poppins',
@@ -90,7 +90,7 @@ class SemesterDialogWidget extends StatelessWidget {
                   border: Border.all(color: ColorName.primary)),
               child: const Center(
                 child: Text(
-                  'Semester 4',
+                  'Kamis',
                   style: TextStyle(
                     color: ColorName.primary,
                     fontFamily: 'Poppins',
@@ -110,7 +110,7 @@ class SemesterDialogWidget extends StatelessWidget {
                   border: Border.all(color: ColorName.primary)),
               child: const Center(
                 child: Text(
-                  'Semester 5',
+                  'Jumat',
                   style: TextStyle(
                     color: ColorName.primary,
                     fontFamily: 'Poppins',
@@ -130,7 +130,7 @@ class SemesterDialogWidget extends StatelessWidget {
                   border: Border.all(color: ColorName.primary)),
               child: const Center(
                 child: Text(
-                  'Semester 6',
+                  'Sabtu',
                   style: TextStyle(
                     color: ColorName.primary,
                     fontFamily: 'Poppins',
@@ -150,7 +150,7 @@ class SemesterDialogWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             InkWell(
-              onTap: (){
+              onTap: () {
                 Navigator.pop(context);
               },
               child: Container(
@@ -176,7 +176,7 @@ class SemesterDialogWidget extends StatelessWidget {
             ),
             const SizedBox(width: 10),
             InkWell(
-              onTap: (){
+              onTap: () {
                 Navigator.pop(context);
               },
               child: Container(

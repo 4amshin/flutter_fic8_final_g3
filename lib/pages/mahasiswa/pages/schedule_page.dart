@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fic8_final_g3/pages/mahasiswa/widgets/schedule_widget/dropdown_schedule_widget.dart';
+import 'package:flutter_fic8_final_g3/pages/mahasiswa/widgets/schedule_page_widget/sp_dropdown_schedule_widget.dart';
 
 import '../../../common/constants/colors.dart';
-import '../widgets/schedule_widget/card_widget.dart';
+import '../widgets/schedule_page_widget/sp_card_widget.dart';
 
 class SchedulePage extends StatelessWidget {
   const SchedulePage({super.key});
@@ -32,7 +32,7 @@ class SchedulePage extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
         children: [
-          const ScheduleDropdown(title: 'Jumat'),
+          const SpScheduleDropdown(title: 'Jumat'),
           const SizedBox(height: 30),
           SizedBox(
             height: MediaQuery.of(context).size.height / 1.2,
@@ -40,10 +40,10 @@ class SchedulePage extends StatelessWidget {
               shrinkWrap: true,
               itemBuilder: (context, index) => const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                child: CardWidget(),
+                child: SpCardWidget(),
               ),
               separatorBuilder: (context, index) =>
-              const Divider(color: ColorName.greyBox),
+                  const Divider(color: ColorName.greyBox),
               itemCount: 12,
             ),
           ),

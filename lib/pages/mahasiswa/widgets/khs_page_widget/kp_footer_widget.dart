@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../common/constants/colors.dart';
 
-class FooterWidget extends StatelessWidget {
-  const FooterWidget({super.key});
+class KpFooterWidget extends StatelessWidget {
+  const KpFooterWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

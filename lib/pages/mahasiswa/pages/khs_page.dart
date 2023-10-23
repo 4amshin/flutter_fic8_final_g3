@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fic8_final_g3/common/constants/custom_navigation.dart';
 
 import '../../../common/constants/colors.dart';
-import '../widgets/khs_widget/dropdown_widget.dart';
-import '../widgets/khs_widget/footer_widget.dart';
-import '../widgets/khs_widget/header_widget.dart';
-import '../widgets/khs_widget/table_row_widget.dart';
+import '../widgets/khs_page_widget/kp_dropdown_widget.dart';
+import '../widgets/khs_page_widget/kp_footer_widget.dart';
+import '../widgets/khs_page_widget/kp_header_widget.dart';
+import '../widgets/khs_page_widget/kp_table_row_widget.dart';
 
 class KhsPage extends StatelessWidget {
   const KhsPage({super.key});
@@ -19,13 +20,15 @@ class KhsPage extends StatelessWidget {
       {"id": "5", "code": "105", "subject": "Manajemen Sistem Informasi"},
       {"id": "6", "code": "106", "subject": "Bahasa Inggris"},
     ];
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigate.pop(),
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
         ),
         backgroundColor: ColorName.primary,
         centerTitle: true,
@@ -40,11 +43,11 @@ class KhsPage extends StatelessWidget {
         ),
       ),
       body: ListView(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(25),
         children: [
-          const HeaderWidget(),
+          const KpHeaderWidget(),
           const SizedBox(height: 40),
-          const SemesterDropdown(title: 'Semester 5'),
+          const KpSemesterDropdown(title: 'Semester 5'),
           const SizedBox(height: 30),
           Container(
             decoration: BoxDecoration(
@@ -64,11 +67,11 @@ class KhsPage extends StatelessWidget {
               children: [
                 const TableRow(
                   children: [
-                    TableRowWidget(
+                    KpTableRowWidget(
                         height: 50, title: "No", fontWeight: FontWeight.w700),
-                    TableRowWidget(
+                    KpTableRowWidget(
                         height: 50, title: "Kode", fontWeight: FontWeight.w700),
-                    TableRowWidget(
+                    KpTableRowWidget(
                         height: 50,
                         title: "Mata Kuliah",
                         fontWeight: FontWeight.w700),
@@ -77,17 +80,17 @@ class KhsPage extends StatelessWidget {
                 for (var rowData in dummyData)
                   TableRow(
                     children: [
-                      TableRowWidget(
+                      KpTableRowWidget(
                           title: rowData["id"], fontWeight: FontWeight.w700),
-                      TableRowWidget(title: rowData["code"]),
-                      TableRowWidget(title: rowData["subject"]),
+                      KpTableRowWidget(title: rowData["code"]),
+                      KpTableRowWidget(title: rowData["subject"]),
                     ],
                   ),
               ],
             ),
           ),
           const SizedBox(height: 24),
-          const FooterWidget(),
+          const KpFooterWidget(),
         ],
       ),
     );

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../common/constants/colors.dart';
 
-class CardWidget extends StatelessWidget {
-  const CardWidget({super.key});
+class SpCardWidget extends StatelessWidget {
+  const SpCardWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +99,7 @@ class CardWidget extends StatelessWidget {
               ),
               const SizedBox(width: 16),
               InkWell(
-                onTap: (){
+                onTap: () {
                   Navigator.pop(context);
                 },
                 child: Container(

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../common/constants/colors.dart';
 
-class CardWidget extends StatelessWidget {
-  const CardWidget({super.key});
+class MpCardWidget extends StatelessWidget {
+  const MpCardWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

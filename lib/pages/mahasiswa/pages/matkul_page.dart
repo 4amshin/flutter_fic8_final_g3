@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fic8_final_g3/pages/mahasiswa/widgets/khs_page_widget/kp_dropdown_widget.dart';
 
 import '../../../common/constants/colors.dart';
-import '../widgets/khs_widget/dropdown_widget.dart';
-import '../widgets/matkul_widget/card_widget.dart';
-import '../widgets/matkul_widget/header_widget.dart';
+import '../widgets/matkul_page_widget/mp_card_widget.dart';
+import '../widgets/matkul_page_widget/mp_header_widget.dart';
 
 class MatkulPage extends StatelessWidget {
   const MatkulPage({super.key});
@@ -33,9 +33,9 @@ class MatkulPage extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
         children: [
-          const HeaderMatkulWidget(),
+          const MpHeaderMatkulWidget(),
           const SizedBox(height: 16),
-          const SemesterDropdown(title: 'Semester 5'),
+          const KpSemesterDropdown(title: 'Semester 5'),
           const SizedBox(height: 16),
           Container(
             height: MediaQuery.of(context).size.height / 1.7,
@@ -48,7 +48,7 @@ class MatkulPage extends StatelessWidget {
               shrinkWrap: true,
               itemBuilder: (context, index) => const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                child: CardWidget(),
+                child: MpCardWidget(),
               ),
               separatorBuilder: (context, index) =>
                   const Divider(color: ColorName.greyBox),

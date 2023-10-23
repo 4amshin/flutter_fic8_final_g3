@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../../../common/constants/colors.dart';
-import 'semester_dialog_widget.dart';
+import 'sp_schedule_dialog_widget.dart';
 
-class SemesterDropdown extends StatefulWidget {
-  const SemesterDropdown({
+class SpScheduleDropdown extends StatefulWidget {
+  const SpScheduleDropdown({
     super.key,
     required this.title,
   });
@@ -12,15 +12,15 @@ class SemesterDropdown extends StatefulWidget {
   final String title;
 
   @override
-  State<SemesterDropdown> createState() => _SemesterDropdownState();
+  State<SpScheduleDropdown> createState() => _SpScheduleDropdownState();
 }
 
-class _SemesterDropdownState extends State<SemesterDropdown> {
+class _SpScheduleDropdownState extends State<SpScheduleDropdown> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
-        _showSemester();
+      onTap: () {
+        _showSchedule();
       },
       child: Container(
         height: 30,
@@ -50,11 +50,11 @@ class _SemesterDropdownState extends State<SemesterDropdown> {
     );
   }
 
-  void _showSemester() {
+  void _showSchedule() {
     showDialog(
       context: context,
       builder: (BuildContext ctx) {
-        return SemesterDialogWidget(key: widget.key);
+        return SpScheduleDialogWidget(key: widget.key);
       },
     );
   }

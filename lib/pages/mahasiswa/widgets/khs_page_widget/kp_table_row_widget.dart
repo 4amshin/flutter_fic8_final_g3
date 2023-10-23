@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../../common/constants/colors.dart';
 
-class TableRowWidget extends StatelessWidget {
-  const TableRowWidget({
+class KpTableRowWidget extends StatelessWidget {
+  const KpTableRowWidget({
     super.key,
     required this.title,
     this.height = 40,

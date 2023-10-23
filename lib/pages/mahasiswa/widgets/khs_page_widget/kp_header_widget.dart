@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 import '../../../../common/constants/colors.dart';
 
-class HeaderWidget extends StatelessWidget {
-  const HeaderWidget({super.key});
+class KpHeaderWidget extends StatelessWidget {
+  const KpHeaderWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: ColorName.primary,
         borderRadius: BorderRadius.circular(10.0),

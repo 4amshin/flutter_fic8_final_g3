@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fic8_final_g3/pages/mahasiswa/widgets/khs_page_widget/kp_semester_selection.dart';
 
 import '../../../../common/constants/colors.dart';
-import 'schedule_dialog_widget.dart';
 
-class ScheduleDropdown extends StatefulWidget {
-  const ScheduleDropdown({
+class KpSemesterDropdown extends StatefulWidget {
+  const KpSemesterDropdown({
     super.key,
     required this.title,
   });
@@ -12,22 +12,23 @@ class ScheduleDropdown extends StatefulWidget {
   final String title;
 
   @override
-  State<ScheduleDropdown> createState() => _ScheduleDropdownState();
+  State<KpSemesterDropdown> createState() => _KpSemesterDropdownState();
 }
 
-class _ScheduleDropdownState extends State<ScheduleDropdown> {
+class _KpSemesterDropdownState extends State<KpSemesterDropdown> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
-        _showSchedule();
+      onTap: () {
+        _showSemester();
       },
       child: Container(
-        height: 30,
+        padding: const EdgeInsets.symmetric(vertical: 8),
         decoration: BoxDecoration(
-            color: ColorName.greyBox,
-            borderRadius: BorderRadius.circular(10.0),
-            border: Border.all(color: ColorName.greyBoxBorder, width: 1)),
+          color: ColorName.greyBox,
+          borderRadius: BorderRadius.circular(10.0),
+          border: Border.all(color: ColorName.greyBoxBorder, width: 1),
+        ),
         child: Row(
           children: [
             Expanded(
@@ -50,11 +51,11 @@ class _ScheduleDropdownState extends State<ScheduleDropdown> {
     );
   }
 
-  void _showSchedule() {
+  void _showSemester() {
     showDialog(
       context: context,
       builder: (BuildContext ctx) {
-        return ScheduleDialogWidget(key: widget.key);
+        return KpSemesterSelection(key: widget.key);
       },
     );
   }
