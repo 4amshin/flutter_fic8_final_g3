@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fic8_final_g3/common/constants/images.dart';
 import 'package:flutter_fic8_final_g3/pages/mahasiswa/widgets/dashboard_page_widgets/dp_menu.dart';
 
+import '../../../../common/constants/custom_navigation.dart';
+import '../../pages/khs_page.dart';
+
 class DpListMenu extends StatelessWidget {
   const DpListMenu({Key? key}) : super(key: key);
 
@@ -17,9 +20,14 @@ class DpListMenu extends StatelessWidget {
         itemCount: dummyData.length,
         itemBuilder: (context, index) {
           final item = dummyData[index];
-          return DpMenu(
-            imgUrl: item.imgUrl,
-            label: item.label,
+          return InkWell(
+            onTap: (){
+              Navigate.push(const KhsPage());
+            },
+            child: DpMenu(
+              imgUrl: item.imgUrl,
+              label: item.label,
+            ),
           );
         },
       ),
