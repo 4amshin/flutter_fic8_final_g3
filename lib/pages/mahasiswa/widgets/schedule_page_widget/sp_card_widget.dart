@@ -1,110 +1,89 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 import '../../../../common/constants/colors.dart';
 
 class SpCardWidget extends StatelessWidget {
-  const SpCardWidget({super.key});
+  final String matkul;
+  final String dosen;
+  final String ruangan;
+  final String jamMulai;
+  final String jamSelesai;
+  final VoidCallback onDetail;
+  const SpCardWidget({
+    Key? key,
+    required this.matkul,
+    required this.dosen,
+    required this.ruangan,
+    required this.jamMulai,
+    required this.jamSelesai,
+    required this.onDetail,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 13),
+      padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
         border: Border.all(color: ColorName.greyBox),
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(15),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Basis Data',
-            style: TextStyle(
+          Text(
+            matkul,
+            style: const TextStyle(
               color: ColorName.primary,
               fontFamily: 'Poppins',
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w600,
               fontSize: 18.0,
             ),
           ),
-          const Text(
-            'Dosen : Sulisa, M.Kom',
-            style: TextStyle(
+          Text(
+            dosen,
+            style: const TextStyle(
               color: ColorName.textGrey,
               fontFamily: 'Poppins',
               fontWeight: FontWeight.w400,
-              fontSize: 13.0,
+              fontSize: 12,
             ),
           ),
-          const Text(
-            'Ruangan: 1A',
-            style: TextStyle(
+          Text(
+            'Ruangan: $ruangan',
+            style: const TextStyle(
               color: ColorName.textGrey,
               fontFamily: 'Poppins',
               fontWeight: FontWeight.w400,
-              fontSize: 13.0,
+              fontSize: 12,
             ),
           ),
           Row(
             children: [
-              const Expanded(
+              Expanded(
                 child: Row(
                   children: [
-                    Column(
-                      children: [
-                        Text(
-                          'Jam Mulai',
-                          style: TextStyle(
-                            color: ColorName.textGrey,
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w400,
-                            fontSize: 13.0,
-                          ),
-                        ),
-                        Text(
-                          '8:30',
-                          style: TextStyle(
-                            color: ColorName.primary,
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w400,
-                            fontSize: 13.0,
-                          ),
-                        ),
-                      ],
+                    _hourIndicator(
+                      title: 'Jam Mulai',
+                      hour: jamMulai,
                     ),
-                    Spacer(),
-                    Column(
-                      children: [
-                        Text(
-                          'Jam Selesai',
-                          style: TextStyle(
-                            color: ColorName.textGrey,
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w400,
-                            fontSize: 13.0,
-                          ),
-                        ),
-                        Text(
-                          '8:30',
-                          style: TextStyle(
-                            color: ColorName.primary,
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w400,
-                            fontSize: 13.0,
-                          ),
-                        ),
-                      ],
+                    const Spacer(),
+                    _hourIndicator(
+                      title: 'Jam Selesai',
+                      hour: jamSelesai,
                     ),
                   ],
                 ),
               ),
               const SizedBox(width: 16),
-              InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                },
+              GestureDetector(
+                onTap: onDetail,
                 child: Container(
-                  height: 23,
-                  width: 70,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 5,
+                  ),
                   decoration: BoxDecoration(
                       color: ColorName.primary,
                       borderRadius: BorderRadius.circular(100.0),
@@ -127,6 +106,34 @@ class SpCardWidget extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+
+  _hourIndicator({
+    required String title,
+    required String hour,
+  }) {
+    return Column(
+      children: [
+        Text(
+          title,
+          style: const TextStyle(
+            color: ColorName.textGrey,
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.w400,
+            fontSize: 12,
+          ),
+        ),
+        Text(
+          hour,
+          style: const TextStyle(
+            color: ColorName.primary,
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.w400,
+            fontSize: 12,
+          ),
+        ),
+      ],
     );
   }
 }

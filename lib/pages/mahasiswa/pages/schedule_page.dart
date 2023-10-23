@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fic8_final_g3/common/constants/custom_navigation.dart';
 import 'package:flutter_fic8_final_g3/pages/mahasiswa/widgets/schedule_page_widget/sp_dropdown_schedule_widget.dart';
 
 import '../../../common/constants/colors.dart';
@@ -12,9 +13,7 @@ class SchedulePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          onPressed: () => Navigate.pop(),
           icon: const Icon(Icons.arrow_back, color: Colors.white),
         ),
         backgroundColor: ColorName.primary,
@@ -30,7 +29,10 @@ class SchedulePage extends StatelessWidget {
         ),
       ),
       body: ListView(
-        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+        padding: const EdgeInsets.symmetric(
+          vertical: 16,
+          horizontal: 24,
+        ),
         children: [
           const SpScheduleDropdown(title: 'Jumat'),
           const SizedBox(height: 30),
@@ -38,13 +40,25 @@ class SchedulePage extends StatelessWidget {
             height: MediaQuery.of(context).size.height / 1.2,
             child: ListView.separated(
               shrinkWrap: true,
-              itemBuilder: (context, index) => const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                child: SpCardWidget(),
-              ),
+              itemCount: 5,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 8,
+                  ),
+                  child: SpCardWidget(
+                    matkul: "Pemrograman PHP",
+                    dosen: "Muh. Akram Hamzah, M.Kom",
+                    ruangan: "Lab 1",
+                    jamMulai: "08:00",
+                    jamSelesai: "10:00",
+                    onDetail: () {},
+                  ),
+                );
+              },
               separatorBuilder: (context, index) =>
-                  const Divider(color: ColorName.greyBox),
-              itemCount: 12,
+                  Divider(color: ColorName.greyBox),
             ),
           ),
         ],

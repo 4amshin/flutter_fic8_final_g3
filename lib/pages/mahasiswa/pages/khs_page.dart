@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fic8_final_g3/common/constants/custom_navigation.dart';
 
 import '../../../common/constants/colors.dart';
-import '../widgets/khs_page_widget/kp_dropdown_widget.dart';
+import '../widgets/khs_page_widget/kp_semester_dropdown.dart';
 import '../widgets/khs_page_widget/kp_footer_widget.dart';
 import '../widgets/khs_page_widget/kp_header_widget.dart';
 import '../widgets/khs_page_widget/kp_table_row_widget.dart';

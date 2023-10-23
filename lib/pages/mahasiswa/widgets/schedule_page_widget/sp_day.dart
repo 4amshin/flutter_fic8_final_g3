@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_fic8_final_g3/common/constants/colors.dart';
 
-class KpSemesterButton extends StatelessWidget {
-  final void Function()? onTap;
+class SpDay extends StatelessWidget {
   final String label;
-  final bool isOutline;
-  const KpSemesterButton({
+  final bool isSelected;
+  final VoidCallback onTap;
+  const SpDay({
     Key? key,
-    this.onTap,
     required this.label,
-    this.isOutline = false,
+    required this.isSelected,
+    required this.onTap,
   }) : super(key: key);
 
   @override
@@ -19,26 +19,22 @@ class KpSemesterButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 15,
-          vertical: 7,
-        ),
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        margin: const EdgeInsets.only(bottom: 10),
         decoration: BoxDecoration(
-          color: isOutline ? Colors.white : ColorName.primary,
-          borderRadius: BorderRadius.circular(100.0),
-          border: Border.all(
-            color: isOutline ? ColorName.greyBoxBorder : ColorName.primary,
-          ),
+          color: isSelected ? ColorName.primary : Colors.white,
+          borderRadius: BorderRadius.circular(10.0),
+          border: Border.all(color: ColorName.primary),
         ),
         child: Center(
           child: Text(
             label,
-            textAlign: TextAlign.center,
             style: TextStyle(
-              color: isOutline ? ColorName.primary : Colors.white,
+              color: isSelected ? Colors.white : ColorName.primary,
               fontFamily: 'Poppins',
               fontWeight: FontWeight.w400,
-              fontSize: 12.0,
+              fontSize: 13.0,
             ),
           ),
         ),

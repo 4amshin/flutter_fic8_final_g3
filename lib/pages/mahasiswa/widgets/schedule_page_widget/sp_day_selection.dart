@@ -1,19 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fic8_final_g3/common/constants/custom_navigation.dart';
 import 'package:flutter_fic8_final_g3/pages/mahasiswa/widgets/khs_page_widget/kp_semester_button.dart';
-import 'package:flutter_fic8_final_g3/pages/mahasiswa/widgets/khs_page_widget/kp_semester_item.dart';
+import 'package:flutter_fic8_final_g3/pages/mahasiswa/widgets/schedule_page_widget/sp_day.dart';
 
-class KpSemesterSelection extends StatefulWidget {
-  const KpSemesterSelection({
+class SpDaySelection extends StatefulWidget {
+  const SpDaySelection({
     super.key,
   });
 
   @override
-  State<KpSemesterSelection> createState() => _KpSemesterSelectionState();
+  State<SpDaySelection> createState() => _SpDaySelectionState();
 }
 
-class _KpSemesterSelectionState extends State<KpSemesterSelection> {
+class _SpDaySelectionState extends State<SpDaySelection> {
   int selectedSemester = -1;
+
+  final List<String> days = [
+    "Senin",
+    "Selasa",
+    "Rabu",
+    "Kamis",
+    "Jumat",
+    "Sabtu",
+  ];
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -34,12 +43,13 @@ class _KpSemesterSelectionState extends State<KpSemesterSelection> {
         ),
         child: ListView.builder(
           shrinkWrap: true,
-          itemCount: 8,
+          itemCount: days.length,
           itemBuilder: (context, index) {
-            return KpSemesterItem(
+            final day = days[index];
+            return SpDay(
               onTap: () => setState(() => selectedSemester = index),
               isSelected: index == selectedSemester,
-              label: "Semester ${index + 1}",
+              label: day,
             );
           },
         ),

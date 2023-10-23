@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fic8_final_g3/pages/mahasiswa/widgets/khs_page_widget/kp_dropdown_widget.dart';
+import 'package:flutter_fic8_final_g3/pages/mahasiswa/widgets/khs_page_widget/kp_semester_dropdown.dart';
 
 import '../../../common/constants/colors.dart';
 import '../widgets/matkul_page_widget/mp_card_widget.dart';

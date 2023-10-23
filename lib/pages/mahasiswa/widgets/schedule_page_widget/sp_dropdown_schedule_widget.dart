@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../common/constants/colors.dart';
-import 'sp_schedule_dialog_widget.dart';
+import 'sp_day_selection.dart';
 
 class SpScheduleDropdown extends StatefulWidget {
   const SpScheduleDropdown({
@@ -19,15 +19,14 @@ class _SpScheduleDropdownState extends State<SpScheduleDropdown> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        _showSchedule();
-      },
+      onTap: () => _showSemester(),
       child: Container(
-        height: 30,
+        padding: const EdgeInsets.symmetric(vertical: 8),
         decoration: BoxDecoration(
-            color: ColorName.greyBox,
-            borderRadius: BorderRadius.circular(10.0),
-            border: Border.all(color: ColorName.greyBoxBorder, width: 1)),
+          color: ColorName.greyBox,
+          borderRadius: BorderRadius.circular(10.0),
+          border: Border.all(color: ColorName.greyBoxBorder, width: 1),
+        ),
         child: Row(
           children: [
             Expanded(
@@ -50,11 +49,11 @@ class _SpScheduleDropdownState extends State<SpScheduleDropdown> {
     );
   }
 
-  void _showSchedule() {
+  void _showSemester() {
     showDialog(
       context: context,
       builder: (BuildContext ctx) {
-        return SpScheduleDialogWidget(key: widget.key);
+        return SpDaySelection(key: widget.key);
       },
     );
   }
