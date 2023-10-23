@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fic8_final_g3/common/constants/custom_navigation.dart';
 import 'package:flutter_fic8_final_g3/pages/mahasiswa/widgets/khs_page_widget/kp_semester_dropdown.dart';
 
 import '../../../common/constants/colors.dart';
@@ -13,10 +14,11 @@ class MatkulPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigate.pop(),
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
         ),
         backgroundColor: ColorName.primary,
         centerTitle: true,
@@ -30,32 +32,45 @@ class MatkulPage extends StatelessWidget {
           ),
         ),
       ),
-      body: ListView(
-        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-        children: [
-          const MpHeaderMatkulWidget(),
-          const SizedBox(height: 16),
-          const KpSemesterDropdown(title: 'Semester 5'),
-          const SizedBox(height: 16),
-          Container(
-            height: MediaQuery.of(context).size.height / 1.7,
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-            decoration: BoxDecoration(
-              border: Border.all(color: ColorName.greyBox),
-              borderRadius: BorderRadius.circular(10.0),
+      body: SafeArea(
+        minimum: const EdgeInsets.symmetric(
+          vertical: 16,
+          horizontal: 24,
+        ),
+        child: ListView(
+          children: [
+            const MpHeaderMatkulWidget(
+              name: "Rely Arfadillah",
+              nim: "2004411285",
             ),
-            child: ListView.separated(
-              shrinkWrap: true,
-              itemBuilder: (context, index) => const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                child: MpCardWidget(),
+            const SizedBox(height: 16),
+            const KpSemesterDropdown(title: 'Semester 5'),
+            const SizedBox(height: 16),
+            Container(
+              height: MediaQuery.of(context).size.height / 1.7,
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              decoration: BoxDecoration(
+                border: Border.all(color: ColorName.greyBox),
+                borderRadius: BorderRadius.circular(10.0),
               ),
-              separatorBuilder: (context, index) =>
-                  const Divider(color: ColorName.greyBox),
-              itemCount: 12,
-            ),
-          )
-        ],
+              child: ListView.separated(
+                shrinkWrap: true,
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return const MpCardWidget(
+                    intial: "P",
+                    kodeMatkul: "101",
+                    matkul: "Pemrograman PHP",
+                    sks: "3",
+                    nilai: "A",
+                  );
+                },
+                separatorBuilder: (context, index) =>
+                    Divider(color: ColorName.greyBox),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
