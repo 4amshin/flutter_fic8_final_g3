@@ -4,12 +4,11 @@ import 'package:flutter_fic8_final_g3/pages/mahasiswa/widgets/khs_page_widget/kp
 import '../../../../common/constants/colors.dart';
 
 class KpSemesterDropdown extends StatefulWidget {
+  final String title;
   const KpSemesterDropdown({
     super.key,
     required this.title,
   });
-
-  final String title;
 
   @override
   State<KpSemesterDropdown> createState() => _KpSemesterDropdownState();
@@ -19,9 +18,7 @@ class _KpSemesterDropdownState extends State<KpSemesterDropdown> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        _showSemester();
-      },
+      onTap: () => _showSemester(),
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 8),
         decoration: BoxDecoration(

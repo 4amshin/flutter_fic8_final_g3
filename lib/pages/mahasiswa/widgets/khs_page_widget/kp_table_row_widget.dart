@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import '../../../../common/constants/colors.dart';
 
 class KpTableRowWidget extends StatelessWidget {
+  final double height;
+  final String title;
+  final FontWeight fontWeight;
+  final double fontSize;
+  final Color fontColor;
   const KpTableRowWidget({
     super.key,
     required this.title,
@@ -11,12 +16,6 @@ class KpTableRowWidget extends StatelessWidget {
     this.fontColor = ColorName.secondaryTextGrey,
   });
 
-  final double height;
-  final String title;
-  final FontWeight fontWeight;
-  final double fontSize;
-  final Color fontColor;
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -24,6 +23,7 @@ class KpTableRowWidget extends StatelessWidget {
       child: Center(
         child: Text(
           title,
+          textAlign: TextAlign.center,
           style: TextStyle(
             color: fontColor,
             fontFamily: 'Poppins',

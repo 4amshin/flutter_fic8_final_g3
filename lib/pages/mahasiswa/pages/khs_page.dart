@@ -51,9 +51,10 @@ class KhsPage extends StatelessWidget {
           const SizedBox(height: 30),
           Container(
             decoration: BoxDecoration(
-                color: ColorName.greyBox,
-                borderRadius: BorderRadius.circular(10.0),
-                border: Border.all(color: ColorName.greyBoxBorder, width: 1)),
+              color: ColorName.greyBox,
+              borderRadius: BorderRadius.circular(10.0),
+              border: Border.all(color: ColorName.greyBoxBorder, width: 1),
+            ),
             child: Table(
               border: TableBorder.all(
                 color: Colors.white,
@@ -68,20 +69,29 @@ class KhsPage extends StatelessWidget {
                 const TableRow(
                   children: [
                     KpTableRowWidget(
-                        height: 50, title: "No", fontWeight: FontWeight.w700),
+                      height: 50,
+                      title: "No",
+                      fontWeight: FontWeight.w700,
+                    ),
                     KpTableRowWidget(
-                        height: 50, title: "Kode", fontWeight: FontWeight.w700),
+                      height: 50,
+                      title: "Kode",
+                      fontWeight: FontWeight.w700,
+                    ),
                     KpTableRowWidget(
-                        height: 50,
-                        title: "Mata Kuliah",
-                        fontWeight: FontWeight.w700),
+                      height: 50,
+                      title: "Mata Kuliah",
+                      fontWeight: FontWeight.w700,
+                    ),
                   ],
                 ),
                 for (var rowData in dummyData)
                   TableRow(
                     children: [
                       KpTableRowWidget(
-                          title: rowData["id"], fontWeight: FontWeight.w700),
+                        title: rowData["id"],
+                        fontWeight: FontWeight.w700,
+                      ),
                       KpTableRowWidget(title: rowData["code"]),
                       KpTableRowWidget(title: rowData["subject"]),
                     ],
