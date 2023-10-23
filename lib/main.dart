@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fic8_final_g3/common/constants/colors.dart';
 import 'package:flutter_fic8_final_g3/common/constants/custom_navigation.dart';
+import 'package:flutter_fic8_final_g3/pages/auth/pages/auth_page.dart';
 import 'package:flutter_fic8_final_g3/pages/auth/pages/splash_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -24,7 +25,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         textTheme: GoogleFonts.poppinsTextTheme(),
       ),
-      home: const SplashPage(),
+      home: const AuthPage(),
+      // home: const SplashPage(),
     );
   }
 }
