@@ -15,9 +15,9 @@ class DpAppBar extends StatelessWidget {
           "Selamat Datang",
           style: TextStyle(
             color: ColorName.primary,
-            fontSize: 15.0,
+            fontSize: 17,
             fontFamily: 'Poppins',
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.w700,
           ),
         ),
         SvgIcon(
