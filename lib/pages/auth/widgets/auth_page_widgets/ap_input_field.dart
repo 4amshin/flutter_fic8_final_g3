@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fic8_final_g3/common/constants/colors.dart';
-import 'package:flutter_fic8_final_g3/common/constants/custom_navigation.dart';
-import 'package:flutter_fic8_final_g3/common/widgets/custom_button.dart';
 import 'package:flutter_fic8_final_g3/common/widgets/custom_text_field.dart';
 import 'package:flutter_fic8_final_g3/common/widgets/link_text.dart';
-import 'package:flutter_fic8_final_g3/pages/mahasiswa/pages/mahasiswa_page.dart';
+import 'package:flutter_fic8_final_g3/pages/auth/widgets/auth_page_widgets/ap_login_button.dart';
 
 class ApInputField extends StatefulWidget {
   const ApInputField({Key? key}) : super(key: key);
@@ -48,11 +45,9 @@ class _ApInputFieldState extends State<ApInputField> {
           ),
         ),
         const SizedBox(height: 30),
-        CustomButton(
-          onTap: () => Navigate.pushReplacement(const MahasiswaPage()),
-          backgroundColor: ColorName.primary,
-          label: 'Login',
-          labelColor: Colors.white,
+        ApLoginButton(
+          emailController: emailController,
+          passwordController: passwordController,
         ),
       ],
     );
