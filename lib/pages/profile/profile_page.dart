@@ -1,4 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_fic8_final_g3/bloc/getUser/get_user_bloc.dart';
 import 'package:flutter_fic8_final_g3/common/constants/colors.dart';
 import 'package:flutter_fic8_final_g3/common/constants/icons.dart';
 import 'package:flutter_fic8_final_g3/pages/profile/widgets/pp_card.dart';
@@ -6,9 +10,24 @@ import 'package:flutter_fic8_final_g3/pages/profile/widgets/pp_item.dart';
 import 'package:flutter_fic8_final_g3/pages/profile/widgets/pp_logout_button.dart';
 import 'package:flutter_fic8_final_g3/pages/profile/widgets/pp_top_part.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   final String role;
-  const ProfilePage({Key? key, required this.role}) : super(key: key);
+  const ProfilePage({
+    Key? key,
+    required this.role,
+  }) : super(key: key);
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  @override
+  void initState() {
+    context.read<GetUserBloc>().add(const GetUserEvent.getProfile());
+    log("Get User Api..");
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +48,10 @@ class ProfilePage extends StatelessWidget {
       ),
       body: SafeArea(
         child: ListView(
-          children: [
-            PpTopPart(role: role),
-            const SizedBox(height: 30),
-            const PpCard(
+          children: const [
+            PpTopPart(),
+            SizedBox(height: 30),
+            PpCard(
               children: [
                 PpItem(
                   iconUrl: IconName.editProfile,
@@ -50,8 +69,8 @@ class ProfilePage extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 25),
-            const PpCard(
+            SizedBox(height: 25),
+            PpCard(
               children: [
                 PpItem(
                   iconUrl: IconName.security,
@@ -82,8 +101,8 @@ class ProfilePage extends StatelessWidget {
             //     ),
             //   ],
             // ),
-            const SizedBox(height: 20),
-            const PpLogoutButton(),
+            SizedBox(height: 20),
+            PpLogoutButton(),
           ],
         ),
       ),

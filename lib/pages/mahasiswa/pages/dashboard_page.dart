@@ -36,13 +36,7 @@ class DashboardPage extends StatelessWidget {
                 children: [
                   DpAppBar(),
                   SizedBox(height: 20),
-                  DpCard(
-                    imgUrl: Images.profile2,
-                    name: "Rely Arfadillah E.",
-                    nim: "2004411285",
-                    fakultas: "Teknik Informatika",
-                    semester: "7",
-                  ),
+                  DpCard(),
                   SizedBox(height: 20),
                   DpListTitle(),
                   SizedBox(height: 10),
