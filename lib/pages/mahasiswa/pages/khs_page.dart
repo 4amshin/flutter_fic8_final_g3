@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_fic8_final_g3/bloc/khs/khs_bloc.dart';
 import 'package:flutter_fic8_final_g3/common/constants/custom_navigation.dart';
+import 'package:flutter_fic8_final_g3/data/models/response/khs_response_model.dart';
 
 import '../../../common/constants/colors.dart';
 import '../widgets/khs_page_widget/kp_semester_dropdown.dart';
@@ -7,20 +10,22 @@ import '../widgets/khs_page_widget/kp_footer_widget.dart';
 import '../widgets/khs_page_widget/kp_header_widget.dart';
 import '../widgets/khs_page_widget/kp_table_row_widget.dart';
 
-class KhsPage extends StatelessWidget {
+class KhsPage extends StatefulWidget {
   const KhsPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    List<Map<String, dynamic>> dummyData = [
-      {"id": "1", "code": "101", "subject": "Pengantar Teknologi Informasi"},
-      {"id": "2", "code": "102", "subject": "Pendidikan Akhlak"},
-      {"id": "3", "code": "103", "subject": "Web Programming"},
-      {"id": "4", "code": "104", "subject": "Basis Data"},
-      {"id": "5", "code": "105", "subject": "Manajemen Sistem Informasi"},
-      {"id": "6", "code": "106", "subject": "Bahasa Inggris"},
-    ];
+  State<KhsPage> createState() => _KhsPageState();
+}
 
+class _KhsPageState extends State<KhsPage> {
+  @override
+  void initState() {
+    context.read<KhsBloc>().add(const KhsEvent.getKhs());
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -42,67 +47,104 @@ class KhsPage extends StatelessWidget {
           ),
         ),
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(25),
-        children: [
-          const KpHeaderWidget(),
-          const SizedBox(height: 40),
-          const KpSemesterDropdown(title: 'Semester 5'),
-          const SizedBox(height: 30),
-          Container(
-            decoration: BoxDecoration(
-              color: ColorName.greyBox,
-              borderRadius: BorderRadius.circular(10.0),
-              border: Border.all(color: ColorName.greyBoxBorder, width: 1),
+      body: BlocBuilder<KhsBloc, KhsState>(
+        builder: (context, state) {
+          return state.maybeWhen(
+            loading: () => const Padding(
+              padding: EdgeInsets.symmetric(vertical: 50),
+              child: Center(child: CircularProgressIndicator()),
             ),
-            child: Table(
-              border: TableBorder.all(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              columnWidths: const {
-                0: FlexColumnWidth(1),
-                1: FlexColumnWidth(1),
-                2: FlexColumnWidth(3),
-              },
-              children: [
-                const TableRow(
-                  children: [
-                    KpTableRowWidget(
-                      height: 50,
-                      title: "No",
-                      fontWeight: FontWeight.w700,
-                    ),
-                    KpTableRowWidget(
-                      height: 50,
-                      title: "Kode",
-                      fontWeight: FontWeight.w700,
-                    ),
-                    KpTableRowWidget(
-                      height: 50,
-                      title: "Mata Kuliah",
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ],
-                ),
-                for (var rowData in dummyData)
-                  TableRow(
-                    children: [
-                      KpTableRowWidget(
-                        title: rowData["id"],
-                        fontWeight: FontWeight.w700,
-                      ),
-                      KpTableRowWidget(title: rowData["code"]),
-                      KpTableRowWidget(title: rowData["subject"]),
-                    ],
+            loaded: (data) {
+              final totalSks = calculateTotalSks(data);
+              final ipk = calculateIpk(data);
+              return ListView(
+                padding: const EdgeInsets.all(25),
+                children: [
+                  KpHeaderWidget(
+                    name: data.first.student.name,
+                    nim: data.first.studentId.toString(),
+                    angkatan: data.first.tahunAkademik,
+                    totalSks: totalSks.toString(),
+                    ipk: ipk.toStringAsFixed(2),
+                    jumlahMatkul: data.length.toString(),
                   ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 24),
-          const KpFooterWidget(),
-        ],
+                  const SizedBox(height: 40),
+                  const KpSemesterDropdown(title: 'Semester 5'),
+                  const SizedBox(height: 30),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: ColorName.greyBox,
+                      borderRadius: BorderRadius.circular(10.0),
+                      border: Border.all(
+                        color: ColorName.greyBoxBorder,
+                        width: 1,
+                      ),
+                    ),
+                    child: Table(
+                      border: TableBorder.all(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      columnWidths: const {
+                        0: FlexColumnWidth(1),
+                        1: FlexColumnWidth(2),
+                      },
+                      children: [
+                        const TableRow(
+                          children: [
+                            KpTableRowWidget(
+                              title: "Kode",
+                              fontWeight: FontWeight.w700,
+                            ),
+                            KpTableRowWidget(
+                              title: "Mata Kuliah",
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ],
+                        ),
+                        for (var rowData in data)
+                          TableRow(
+                            children: [
+                              KpTableRowWidget(
+                                title: rowData.subjectId.toString(),
+                              ),
+                              KpTableRowWidget(
+                                title: rowData.subject.title,
+                              ),
+                            ],
+                          ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  KpFooterWidget(
+                    totalSks: totalSks.toString(),
+                    jumlahMatkul: data.length.toString(),
+                  ),
+                ],
+              );
+            },
+            error: (message) => Center(child: Text(message)),
+            orElse: () => const Center(child: Text("User Not Found")),
+          );
+        },
       ),
     );
+  }
+
+  int calculateTotalSks(List<Khs> data) {
+    int totalSks = 0;
+    for (var item in data) {
+      totalSks += item.subject.sks;
+    }
+    return totalSks;
+  }
+
+  double calculateIpk(List<Khs> data) {
+    int ipk = 0;
+    for (var item in data) {
+      ipk += int.parse(item.nilai);
+    }
+    return ipk / data.length;
   }
 }

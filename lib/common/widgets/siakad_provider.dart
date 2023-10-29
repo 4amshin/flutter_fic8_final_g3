@@ -2,9 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_fic8_final_g3/bloc/getUser/get_user_bloc.dart';
+import 'package:flutter_fic8_final_g3/bloc/khs/khs_bloc.dart';
 import 'package:flutter_fic8_final_g3/bloc/login/login_bloc.dart';
 import 'package:flutter_fic8_final_g3/bloc/logout/logout_bloc.dart';
 import 'package:flutter_fic8_final_g3/data/data_sources/auth_remote_data_source.dart';
+import 'package:flutter_fic8_final_g3/data/data_sources/khs_remote_data_source.dart';
 
 class SiakadProvider extends StatelessWidget {
   final Widget child;
@@ -25,6 +27,9 @@ class SiakadProvider extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => GetUserBloc(AuthRemoteDataSource()),
+        ),
+        BlocProvider(
+          create: (context) => KhsBloc(KhsRemoteDataSource()),
         ),
       ],
       child: child,
