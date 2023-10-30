@@ -28,7 +28,7 @@ class PpTopPart extends StatelessWidget {
                   height: 40.0,
                 ),
                 const ProfilePicture(
-                  imgUrl: Images.profile2,
+                  imgUrl: Images.profile,
                   size: 100,
                 ),
                 const SizedBox(height: 10),

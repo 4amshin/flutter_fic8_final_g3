@@ -53,7 +53,7 @@ class _DpCardState extends State<DpCard> {
             child: Column(
               children: [
                 const ProfilePicture(
-                  imgUrl: Images.profile2,
+                  imgUrl: Images.profile,
                   size: 70,
                 ),
                 const SizedBox(height: 10),

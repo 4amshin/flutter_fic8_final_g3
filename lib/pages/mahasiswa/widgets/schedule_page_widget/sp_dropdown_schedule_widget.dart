@@ -1,21 +1,22 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 import '../../../../common/constants/colors.dart';
 import 'sp_day_selection.dart';
 
 class SpScheduleDropdown extends StatefulWidget {
+  final Function(String) onDaySelected;
   const SpScheduleDropdown({
-    super.key,
-    required this.title,
-  });
-
-  final String title;
+    Key? key,
+    required this.onDaySelected,
+  }) : super(key: key);
 
   @override
   State<SpScheduleDropdown> createState() => _SpScheduleDropdownState();
 }
 
 class _SpScheduleDropdownState extends State<SpScheduleDropdown> {
+  String selectedDay = "Senin"; // Default
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -31,7 +32,7 @@ class _SpScheduleDropdownState extends State<SpScheduleDropdown> {
           children: [
             Expanded(
               child: Text(
-                widget.title,
+                selectedDay,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: ColorName.textGrey,
@@ -53,7 +54,14 @@ class _SpScheduleDropdownState extends State<SpScheduleDropdown> {
     showDialog(
       context: context,
       builder: (BuildContext ctx) {
-        return SpDaySelection(key: widget.key);
+        return SpDaySelection(
+          selectedDay: selectedDay,
+          onDaySelected: (hari) {
+            setState(() {
+              selectedDay = hari;
+            });
+          },
+        );
       },
     );
   }

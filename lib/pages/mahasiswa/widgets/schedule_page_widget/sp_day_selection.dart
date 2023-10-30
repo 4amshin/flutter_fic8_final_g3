@@ -1,12 +1,18 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:flutter_fic8_final_g3/common/constants/custom_navigation.dart';
 import 'package:flutter_fic8_final_g3/pages/mahasiswa/widgets/khs_page_widget/kp_semester_button.dart';
 import 'package:flutter_fic8_final_g3/pages/mahasiswa/widgets/schedule_page_widget/sp_day.dart';
 
 class SpDaySelection extends StatefulWidget {
+  final Function(String) onDaySelected;
+  final String selectedDay;
   const SpDaySelection({
-    super.key,
-  });
+    Key? key,
+    required this.onDaySelected,
+    required this.selectedDay,
+  }) : super(key: key);
 
   @override
   State<SpDaySelection> createState() => _SpDaySelectionState();
@@ -67,7 +73,10 @@ class _SpDaySelectionState extends State<SpDaySelection> {
             ),
             const SizedBox(width: 10),
             KpSemesterButton(
-              onTap: () => Navigate.pop(),
+              onTap: () {
+                widget.onDaySelected(widget.selectedDay);
+                Navigate.pop();
+              },
               label: "Pilih",
             ),
           ],

@@ -5,8 +5,10 @@ import 'package:flutter_fic8_final_g3/bloc/getUser/get_user_bloc.dart';
 import 'package:flutter_fic8_final_g3/bloc/khs/khs_bloc.dart';
 import 'package:flutter_fic8_final_g3/bloc/login/login_bloc.dart';
 import 'package:flutter_fic8_final_g3/bloc/logout/logout_bloc.dart';
+import 'package:flutter_fic8_final_g3/bloc/schedules/schedules_bloc.dart';
 import 'package:flutter_fic8_final_g3/data/data_sources/auth_remote_data_source.dart';
 import 'package:flutter_fic8_final_g3/data/data_sources/khs_remote_data_source.dart';
+import 'package:flutter_fic8_final_g3/data/data_sources/schedules_remote_data_source.dart';
 
 class SiakadProvider extends StatelessWidget {
   final Widget child;
@@ -30,6 +32,9 @@ class SiakadProvider extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => KhsBloc(KhsRemoteDataSource()),
+        ),
+        BlocProvider(
+          create: (context) => SchedulesBloc(SchedulesRemoteDataSource()),
         ),
       ],
       child: child,

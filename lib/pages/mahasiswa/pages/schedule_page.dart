@@ -1,12 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_fic8_final_g3/bloc/schedules/schedules_bloc.dart';
 import 'package:flutter_fic8_final_g3/common/constants/custom_navigation.dart';
 import 'package:flutter_fic8_final_g3/pages/mahasiswa/widgets/schedule_page_widget/sp_dropdown_schedule_widget.dart';
 
 import '../../../common/constants/colors.dart';
 import '../widgets/schedule_page_widget/sp_card_widget.dart';
 
-class SchedulePage extends StatelessWidget {
+class SchedulePage extends StatefulWidget {
   const SchedulePage({super.key});
+
+  @override
+  State<SchedulePage> createState() => _SchedulePageState();
+}
+
+class _SchedulePageState extends State<SchedulePage> {
+  @override
+  void initState() {
+    context.read<SchedulesBloc>().add(const SchedulesEvent.getSchedules());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,31 +47,49 @@ class SchedulePage extends StatelessWidget {
           horizontal: 24,
         ),
         children: [
-          const SpScheduleDropdown(title: 'Jumat'),
+          // SpScheduleDropdown(onDaySelected: (selectedDay) {
+          //   context
+          //       .read<SchedulesBloc>()
+          //       .add(SchedulesEvent.filterScheduleByDay(selectedDay));
+          // }),
+          SpScheduleDropdown(onDaySelected: (string) {}),
           const SizedBox(height: 30),
           SizedBox(
             height: MediaQuery.of(context).size.height / 1.2,
-            child: ListView.separated(
-              shrinkWrap: true,
-              itemCount: 5,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 8,
+            child: BlocBuilder<SchedulesBloc, SchedulesState>(
+              builder: (context, state) {
+                return state.maybeWhen(
+                  loading: () => const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 50),
+                    child: Center(child: CircularProgressIndicator()),
                   ),
-                  child: SpCardWidget(
-                    matkul: "Pemrograman PHP",
-                    dosen: "Muh. Akram Hamzah, M.Kom",
-                    ruangan: "Lab 1",
-                    jamMulai: "08:00",
-                    jamSelesai: "10:00",
-                    onDetail: () {},
+                  loaded: (schedule) => ListView.separated(
+                    shrinkWrap: true,
+                    itemCount: schedule.length,
+                    itemBuilder: (context, index) {
+                      final item = schedule[index];
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 8,
+                        ),
+                        child: SpCardWidget(
+                          matkul: item.subject.title,
+                          dosen: item.subject.lecturer.name,
+                          ruangan: item.ruangan,
+                          jamMulai: item.jamMulai,
+                          jamSelesai: item.jamSelesai,
+                          onDetail: () {},
+                        ),
+                      );
+                    },
+                    separatorBuilder: (context, index) =>
+                        Divider(color: ColorName.greyBox),
                   ),
+                  error: (message) => Center(child: Text(message)),
+                  orElse: () => const Center(child: Text("User Not Found")),
                 );
               },
-              separatorBuilder: (context, index) =>
-                  Divider(color: ColorName.greyBox),
             ),
           ),
         ],
