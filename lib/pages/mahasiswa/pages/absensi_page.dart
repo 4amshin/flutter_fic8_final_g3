@@ -25,13 +25,14 @@ class AbsensiPage extends StatelessWidget {
           ),
         ),
       ),
-      body: const SafeArea(
-        minimum: EdgeInsets.symmetric(
+      body: SafeArea(
+        minimum: const EdgeInsets.symmetric(
           horizontal: 25,
-          vertical: 10,
+          // vertical: 10,
         ),
-        child: Column(
-          children: [
+        child: ListView(
+          physics: const BouncingScrollPhysics(),
+          children: const [
             SvgImage(
               iconUrl: Images.absensi,
               height: 200,
@@ -41,6 +42,7 @@ class AbsensiPage extends StatelessWidget {
             ApMap(),
             SizedBox(height: 20),
             ApHistory(),
+            SizedBox(height: 20),
           ],
         ),
       ),

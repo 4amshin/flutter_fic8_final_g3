@@ -32,39 +32,44 @@ class ApHistoryItem extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                "$ruangan - $matkul",
-                style: const TextStyle(
-                  height: 1,
-                  fontSize: 13,
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  "$ruangan - $matkul",
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    height: 1,
+                    fontSize: 13,
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
                 ),
-              ),
-              Text(
-                waktu,
-                style: const TextStyle(
-                  fontSize: 11,
-                  fontFamily: 'Poppins',
-                  color: Colors.grey,
+                Text(
+                  waktu,
+                  style: const TextStyle(
+                    fontSize: 11,
+                    fontFamily: 'Poppins',
+                    color: Colors.grey,
+                  ),
                 ),
-              ),
-            ],
-          ),
-          Text(
-            jam,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 13,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.bold,
+              ],
             ),
           ),
+          // const SizedBox(width: 10),
+          // Text(
+          //   jam,
+          //   style: const TextStyle(
+          //     color: Colors.white,
+          //     fontSize: 13,
+          //     fontFamily: 'Poppins',
+          //     fontWeight: FontWeight.bold,
+          //   ),
+          // ),
         ],
       ),
     );

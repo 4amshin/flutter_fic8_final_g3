@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_fic8_final_g3/bloc/khs/khs_bloc.dart';
 import 'package:flutter_fic8_final_g3/common/constants/custom_navigation.dart';
 import 'package:flutter_fic8_final_g3/pages/mahasiswa/widgets/khs_page_widget/kp_semester_dropdown.dart';
 
@@ -39,34 +41,60 @@ class MatkulPage extends StatelessWidget {
         ),
         child: ListView(
           children: [
-            const MpHeaderMatkulWidget(
-              name: "Rely Arfadillah",
-              nim: "2004411285",
+            BlocBuilder<KhsBloc, KhsState>(
+              builder: (context, state) {
+                return state.maybeWhen(
+                  loading: () => const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 50),
+                    child: Center(child: CircularProgressIndicator()),
+                  ),
+                  loaded: (khs) => MpHeaderMatkulWidget(
+                    name: khs.first.student.name,
+                    nim: khs.first.studentId.toString(),
+                  ),
+                  error: (message) => Center(child: Text(message)),
+                  orElse: () => const Center(child: Text("User Not Found")),
+                );
+              },
             ),
             const SizedBox(height: 16),
             const KpSemesterDropdown(title: 'Semester 5'),
             const SizedBox(height: 16),
             Container(
-              height: MediaQuery.of(context).size.height / 1.7,
+              // height: MediaQuery.of(context).size.height / 1.7,
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
               decoration: BoxDecoration(
                 border: Border.all(color: ColorName.greyBox),
                 borderRadius: BorderRadius.circular(10.0),
               ),
-              child: ListView.separated(
-                shrinkWrap: true,
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return const MpCardWidget(
-                    intial: "P",
-                    kodeMatkul: "101",
-                    matkul: "Pemrograman PHP",
-                    sks: "3",
-                    nilai: "A",
+              child: BlocBuilder<KhsBloc, KhsState>(
+                builder: (context, state) {
+                  return state.maybeWhen(
+                    loading: () => const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 50),
+                      child: Center(child: CircularProgressIndicator()),
+                    ),
+                    loaded: (khs) => ListView.separated(
+                      physics: const BouncingScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: khs.length,
+                      itemBuilder: (context, index) {
+                        final item = khs[index];
+                        return MpCardWidget(
+                          intial: "P",
+                          kodeMatkul: item.subjectId.toString(),
+                          matkul: item.subject.title,
+                          sks: item.subject.sks.toString(),
+                          nilai: item.grade,
+                        );
+                      },
+                      separatorBuilder: (context, index) =>
+                          Divider(color: ColorName.greyBox),
+                    ),
+                    error: (message) => Center(child: Text(message)),
+                    orElse: () => const Center(child: Text("User Not Found")),
                   );
                 },
-                separatorBuilder: (context, index) =>
-                    Divider(color: ColorName.greyBox),
               ),
             )
           ],

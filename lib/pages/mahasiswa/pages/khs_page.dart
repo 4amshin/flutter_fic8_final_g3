@@ -87,7 +87,7 @@ class _KhsPageState extends State<KhsPage> {
                       ),
                       columnWidths: const {
                         0: FlexColumnWidth(1),
-                        1: FlexColumnWidth(2),
+                        1: FlexColumnWidth(4),
                       },
                       children: [
                         const TableRow(

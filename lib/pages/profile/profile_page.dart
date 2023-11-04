@@ -70,39 +70,22 @@ class _ProfilePageState extends State<ProfilePage> {
               ],
             ),
             SizedBox(height: 25),
-            PpCard(
-              children: [
-                PpItem(
-                  iconUrl: IconName.security,
-                  label: 'Keamanan',
-                ),
-                SizedBox(height: 10.0),
-                PpItem(
-                  iconUrl: IconName.theme,
-                  label: 'Tema',
-                ),
-              ],
-            ),
-            // const PpCard(
+            // PpCard(
             //   children: [
             //     PpItem(
-            //       iconUrl: IconName.helpSupport,
-            //       label: 'Help & Support',
+            //       iconUrl: IconName.security,
+            //       label: 'Keamanan',
             //     ),
             //     SizedBox(height: 10.0),
             //     PpItem(
-            //       iconUrl: IconName.contactUs,
-            //       label: 'Contact Us',
-            //     ),
-            //     SizedBox(height: 10.0),
-            //     PpItem(
-            //       iconUrl: IconName.privacy,
-            //       label: 'Privacy Policy',
+            //       iconUrl: IconName.theme,
+            //       label: 'Tema',
             //     ),
             //   ],
             // ),
-            SizedBox(height: 20),
+            // SizedBox(height: 20),
             PpLogoutButton(),
+            SizedBox(height: 20),
           ],
         ),
       ),

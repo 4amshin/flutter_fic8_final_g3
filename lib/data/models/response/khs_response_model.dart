@@ -103,9 +103,9 @@ class Student {
   final String name;
   final String email;
   final String roles;
-  final dynamic phone;
-  final dynamic address;
-  final DateTime emailVerifiedAt;
+  final String phone;
+  final String address;
+  final dynamic emailVerifiedAt;
   final dynamic twoFactorSecret;
   final dynamic twoFactorRecoveryCodes;
   final dynamic twoFactorConfirmedAt;
@@ -138,7 +138,7 @@ class Student {
         roles: json["roles"],
         phone: json["phone"],
         address: json["address"],
-        emailVerifiedAt: DateTime.parse(json["email_verified_at"]),
+        emailVerifiedAt: json["email_verified_at"],
         twoFactorSecret: json["two_factor_secret"],
         twoFactorRecoveryCodes: json["two_factor_recovery_codes"],
         twoFactorConfirmedAt: json["two_factor_confirmed_at"],
@@ -153,7 +153,7 @@ class Student {
         "roles": roles,
         "phone": phone,
         "address": address,
-        "email_verified_at": emailVerifiedAt.toIso8601String(),
+        "email_verified_at": emailVerifiedAt,
         "two_factor_secret": twoFactorSecret,
         "two_factor_recovery_codes": twoFactorRecoveryCodes,
         "two_factor_confirmed_at": twoFactorConfirmedAt,
