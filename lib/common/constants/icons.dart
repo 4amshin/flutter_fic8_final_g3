@@ -9,6 +9,9 @@ class IconName {
   static const String scan = 'assets/icons/scan.svg';
   static const String filter = 'assets/icons/filter.svg';
 
+  static const String eye = 'assets/icons/eye.svg';
+  static const String eyeSlash = 'assets/icons/eye-slash.svg';
+
   //profile page icons
   static const String editProfile = 'assets/icons/edit-profile.svg';
   static const String language = 'assets/icons/language.svg';

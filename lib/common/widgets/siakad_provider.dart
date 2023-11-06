@@ -6,6 +6,7 @@ import 'package:flutter_fic8_final_g3/bloc/getUser/get_user_bloc.dart';
 import 'package:flutter_fic8_final_g3/bloc/khs/khs_bloc.dart';
 import 'package:flutter_fic8_final_g3/bloc/login/login_bloc.dart';
 import 'package:flutter_fic8_final_g3/bloc/logout/logout_bloc.dart';
+import 'package:flutter_fic8_final_g3/bloc/passwordVisible/password_visible_cubit.dart';
 import 'package:flutter_fic8_final_g3/bloc/schedules/schedules_bloc.dart';
 import 'package:flutter_fic8_final_g3/data/data_sources/absensi_remote_data_source.dart';
 import 'package:flutter_fic8_final_g3/data/data_sources/auth_remote_data_source.dart';
@@ -40,6 +41,9 @@ class SiakadProvider extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => AbsensiBloc(AbsensiRemoteDataSource()),
+        ),
+        BlocProvider(
+          create: (context) => PasswordVisibleCubit(),
         ),
       ],
       child: child,

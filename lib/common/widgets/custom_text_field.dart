@@ -1,21 +1,36 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_fic8_final_g3/common/constants/colors.dart';
+import 'package:flutter_fic8_final_g3/common/constants/icons.dart';
+import 'package:flutter_fic8_final_g3/common/widgets/svg_icon_button.dart';
 
-class CustomTextField extends StatelessWidget {
+class CustomTextField extends StatefulWidget {
   final TextEditingController controller;
   final String label;
   final Function(String value)? onChanged;
-  final bool obscureText;
+  final bool isPassword;
   final TextInputType textInputType;
   const CustomTextField({
     Key? key,
     required this.controller,
     required this.label,
     this.onChanged,
-    this.obscureText = false,
+    this.isPassword = false,
     this.textInputType = TextInputType.text,
   }) : super(key: key);
+
+  @override
+  State<CustomTextField> createState() => _CustomTextFieldState();
+}
+
+class _CustomTextFieldState extends State<CustomTextField> {
+  bool obscureText = false;
+
+  @override
+  void initState() {
+    super.initState();
+    obscureText = widget.isPassword;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +40,7 @@ class CustomTextField extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 5),
           child: Text(
-            label,
+            widget.label,
             style: const TextStyle(
               fontSize: 14.0,
               fontFamily: 'Poppins',
@@ -36,9 +51,9 @@ class CustomTextField extends StatelessWidget {
         ),
         const SizedBox(height: 5),
         TextFormField(
-          controller: controller,
-          onChanged: onChanged,
-          keyboardType: textInputType,
+          controller: widget.controller,
+          onChanged: widget.onChanged,
+          keyboardType: widget.textInputType,
           obscureText: obscureText,
           decoration: InputDecoration(
             // labelText: label,
@@ -50,6 +65,21 @@ class CustomTextField extends StatelessWidget {
               borderRadius: BorderRadius.circular(15),
               borderSide: const BorderSide(color: Colors.grey),
             ),
+            suffixIcon: widget.isPassword
+                ? Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: SvgIconButton(
+                      onClick: () {
+                        setState(() {
+                          obscureText = !obscureText;
+                        });
+                      },
+                      iconUrl: obscureText ? IconName.eye : IconName.eyeSlash,
+                      height: 20,
+                      color: Colors.black54,
+                    ),
+                  )
+                : const SizedBox.shrink(),
           ),
         ),
       ],

@@ -34,7 +34,7 @@ class _ApInputFieldState extends State<ApInputField> {
         CustomTextField(
           controller: passwordController,
           label: "Password",
-          obscureText: true,
+          isPassword: true,
         ),
         const SizedBox(height: 10),
         Align(
