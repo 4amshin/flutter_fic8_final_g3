@@ -23,7 +23,9 @@ class _DosenPageState extends State<DosenPage> {
   }
 
   final List<Widget> _pages = const [
-    DashboardPage(),
+    DashboardPage(
+      role: "Dosen",
+    ),
     AbsensiPage(),
     ProfilePage(role: "Dosen"),
   ];

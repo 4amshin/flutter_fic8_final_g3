@@ -74,22 +74,34 @@ class _ApHistoryState extends State<ApHistory> {
                           padding: EdgeInsets.symmetric(vertical: 50),
                           child: Center(child: CircularProgressIndicator()),
                         ),
-                    loaded: (absensi) => ListView.builder(
-                          physics: const BouncingScrollPhysics(),
-                          itemCount: absensi.length,
-                          itemBuilder: (context, index) {
-                            final absen = absensi[index];
-                            final day = absen.schedule.hari;
-                            final jam = absen.schedule.jamMulai;
+                    loaded: (absensi) {
+                      if (absensi.isEmpty) {
+                        return const Center(
+                          child: Text(
+                            "No Data Found",
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        );
+                      }
+                      return ListView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: absensi.length,
+                        itemBuilder: (context, index) {
+                          final absen = absensi[index];
+                          final day = absen.schedule.hari;
+                          final jam = absen.schedule.jamMulai;
 
-                            return ApHistoryItem(
-                              ruangan: absen.schedule.ruangan,
-                              matkul: absen.schedule.subject.title,
-                              jam: absen.schedule.jamMulai,
-                              waktu: "$day ~ $jam",
-                            );
-                          },
-                        ),
+                          return ApHistoryItem(
+                            ruangan: absen.schedule.ruangan,
+                            matkul: absen.schedule.subject.title,
+                            jam: absen.schedule.jamMulai,
+                            waktu: "$day ~ $jam",
+                          );
+                        },
+                      );
+                    },
                     error: (message) => Center(child: Text(message)),
                     orElse: () => const Center(child: Text("Data Not Found")));
               },

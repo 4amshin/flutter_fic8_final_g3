@@ -23,7 +23,9 @@ class _MahasiswaPageState extends State<MahasiswaPage> {
   }
 
   final List<Widget> _pages = const [
-    DashboardPage(),
+    DashboardPage(
+      role: "Mahasiswa",
+    ),
     AbsensiPage(),
     ProfilePage(role: "Mahasiswa"),
   ];

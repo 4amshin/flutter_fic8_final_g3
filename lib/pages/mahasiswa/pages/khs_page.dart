@@ -55,18 +55,22 @@ class _KhsPageState extends State<KhsPage> {
               child: Center(child: CircularProgressIndicator()),
             ),
             loaded: (data) {
+              if (data.isEmpty) {
+                return const Center(child: Text("No Data Found"));
+              }
+
               final totalSks = calculateTotalSks(data);
               final ipk = calculateIpk(data);
               return ListView(
                 padding: const EdgeInsets.all(25),
                 children: [
                   KpHeaderWidget(
-                    name: data.first.student.name,
-                    nim: data.first.studentId.toString(),
-                    angkatan: data.first.tahunAkademik,
+                    name: data.isNotEmpty ? data.first.student.name : "",
+                    nim: data.isNotEmpty ? data.first.studentId.toString() : "",
+                    angkatan: data.isNotEmpty ? data.first.tahunAkademik : "",
                     totalSks: totalSks.toString(),
                     ipk: ipk.toStringAsFixed(2),
-                    jumlahMatkul: data.length.toString(),
+                    jumlahMatkul: data.isNotEmpty ? data.length.toString() : "",
                   ),
                   const SizedBox(height: 40),
                   const KpSemesterDropdown(title: 'Semester 5'),
